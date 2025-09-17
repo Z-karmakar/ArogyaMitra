@@ -14,15 +14,10 @@ interface Message {
 }
 
 export default function ChatbotPage() {
-  const [selectedLanguage, setSelectedLanguage] = useState<string>(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("selectedLanguage") || "हिंदी";
-    }
-    return "हिंदी";
-  });
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("हिंदी");
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("selectedLanguage") || "हिंदी";
-    setSelectedLanguage(savedLanguage);
+    const savedLanguage = localStorage.getItem("selectedLanguage");
+    setSelectedLanguage(savedLanguage ?? "हिंदी"); // nullish coalescing ensures string
   }, []);
   const [messages, setMessages] = useState<Message[]>([])
   const [inputText, setInputText] = useState("")

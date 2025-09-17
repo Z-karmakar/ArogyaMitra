@@ -31,12 +31,11 @@ const translations = {
 }
 
 function App() {
-  const [selectedLanguage, setSelectedLanguage] = useState(
-    () => localStorage.getItem("selectedLanguage") || "हिंदी"
-  );
+   const [selectedLanguage, setSelectedLanguage] = useState("हिंदी");
+
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("selectedLanguage") || "हिंदी";
-    setSelectedLanguage(savedLanguage);
+    const savedLanguage = localStorage.getItem("selectedLanguage");
+    setSelectedLanguage(savedLanguage); // nullish coalescing ensures string
   }, []);
 
   useEffect(() => {
